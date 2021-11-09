@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
-
-<robot name="Robot1">		
+<robot name="Robot1">
 	<link name="link_chassis">
+    <!-- pose and inertial -->
+    <pose>0 0 0.1 0 0 0</pose>
     <!-- body -->
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -36,6 +37,32 @@
     </visual>
   </link>
 
+    <link name="arm_base">
+		<visual>
+			<geometry>
+				<box size="0.1 .1 .1"/>
+			</geometry>
+			<origin rpy="0 0 0" xyz="0 0 0.1"/>
+		</visual>
+	</link>
+
+	<link name="arm_1">
+		<visual>
+			<geometry>
+				<box size="0.05 .05 0.5"/>
+			</geometry>
+			<origin rpy="0 0 0" xyz="0 0 0.25"/>
+		</visual>
+	</link>
+	
+	<link name="arm_2">
+		<visual>
+			<geometry>
+				<box size="0.05 0.05 0.5"/>
+			</geometry>
+			<origin rpy="0 0 0" xyz="0.06 0 0.15"/>
+		</visual>
+	</link>
 
   <joint name="joint_right_wheel" type="continuous">
     <origin rpy="0 0 0" xyz="-0.05 0.15 0"/>
@@ -56,4 +83,27 @@
     <joint_properties damping="1.0" friction="1.0"/>
   </joint>
 
+     <joint name="base_to_arm_base" type="continuous">
+		<parent link="link_chassis"/>
+		<child link="arm_base"/>
+		<axis xyz="0 0 1"/>
+		<origin xyz="0 0 0"/>
+	</joint>
+
+        <joint name="arm_1_to_arm_base" type="revolute">
+		<parent link="arm_base"/>
+		<child link="arm_1"/>
+		<axis xyz="1 0 0"/>
+		<origin xyz="0 0 0.15"/>
+		<limit effort ="100.0" lower="-1.0" upper="1.0" velocity="0.5"/>
+	</joint>
+
+       <joint name="arm_2_to_arm_1" type="revolute">
+		<parent link="arm_1"/>
+		<child link="arm_2"/>
+		<axis xyz="1 0 0"/>
+		<origin xyz="0.0 0 0.45"/>
+		<limit effort ="100.0" lower="-2.5" upper="2.5" velocity="0.5"/>
+	</joint>
 </robot>
+	

@@ -2,7 +2,7 @@
 <launch>
 
   <!-- these are the arguments you can pass this launch file, for example paused:=true -->
-  <arg name="model" default="$(find robot_urdf)/urdf/robot2.xacro" />
+  <arg name="model" default="$(find robot_urdf)/urdf/robot2_laser.xacro" />
 
   <!-- We resume the logic in empty_world.launch -->
    <include file="$(find gazebo_ros)/launch/empty_world.launch"> 

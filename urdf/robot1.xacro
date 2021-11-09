@@ -15,8 +15,8 @@
     <xacro:macro name="wheel_geometry">
 		<geometry>
        			<cylinder length="${length_wheel}" radius="${radius_wheel}"/>
-     	</geometry>
-	</xacro:macro>
+     		</geometry>
+    </xacro:macro>
 
 	  <link name="link_chassis">
     <!-- pose and inertial -->
