@@ -9,6 +9,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   urdf
   sensor_msgs
+  moveit_ros_planning_interface
 )
 
 ## System dependencies are found with CMake's conventions
@@ -139,6 +140,9 @@ include_directories(
 # target_link_libraries(state_publisher_tutorial
 #   ${catkin_LIBRARIES}
 # )
+add_executable(move_to_pose src/my_moveit.cpp)
+target_link_libraries(move_to_pose ${catkin_LIBRARIES})
+
 
 #############
 ## Install ##
