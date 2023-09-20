@@ -21,6 +21,12 @@ def generate_launch_description():
         executable='robot_state_publisher',
         parameters=[{'robot_description': Command(['xacro ', LaunchConfiguration('model')])}]
     )
+    
+    joint_state_publisher_node = Node(
+        package='joint_state_publisher',
+        executable='joint_state_publisher',
+        name='joint_state_publisher'
+    )
 
     # GAZEBO_MODEL_PATH has to be correctly set for Gazebo to be able to find the model
     spawn_entity = Node(package='gazebo_ros', executable='spawn_entity.py',
@@ -31,6 +37,7 @@ def generate_launch_description():
         DeclareLaunchArgument(name='model', default_value=default_model_path,
                                     description='Absolute path to robot urdf file'),
         robot_state_publisher_node,
+        joint_state_publisher_node,
         spawn_entity,
         ExecuteProcess(
             cmd=['gazebo', '--verbose','worlds/empty.world', '-s', 'libgazebo_ros_factory.so'],
