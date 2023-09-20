@@ -9,7 +9,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   urdf
   sensor_msgs
-  moveit_ros_planning_interface
+# moveit_ros_planning_interface
 )
 
 ## System dependencies are found with CMake's conventions
@@ -130,8 +130,8 @@ include_directories(
 # add_dependencies(robot1_description ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a cpp executable
- add_executable(mymoveit_node1 src/my_moveit.cpp)
- add_executable(mymoveit_node2 src/my_moveit2.cpp)
+# add_executable(mymoveit_node1 src/my_moveit.cpp)
+# add_executable(mymoveit_node2 src/my_moveit2.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
@@ -143,8 +143,8 @@ include_directories(
 # )
 
 #
-target_link_libraries(mymoveit_node1 ${catkin_LIBRARIES})
-target_link_libraries(mymoveit_node2 ${catkin_LIBRARIES})
+#target_link_libraries(mymoveit_node1 ${catkin_LIBRARIES})
+#target_link_libraries(mymoveit_node2 ${catkin_LIBRARIES})
 
 
 #############
