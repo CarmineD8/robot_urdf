@@ -15,6 +15,7 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
     test_robot_description_share = FindPackageShare(package='robot_urdf').find('robot_urdf')
     default_model_path = os.path.join(test_robot_description_share, 'urdf/robot4.xacro')
+    rviz_config_path = os.path.join(test_robot_description_share, 'config/rviz.rviz')
 
     robot_state_publisher_node = Node(
         package='robot_state_publisher',
@@ -27,6 +28,7 @@ def generate_launch_description():
         executable='joint_state_publisher',
         name='joint_state_publisher'
     )
+   
 
     # GAZEBO_MODEL_PATH has to be correctly set for Gazebo to be able to find the model
     spawn_entity = Node(package='gazebo_ros', executable='spawn_entity.py',
@@ -41,5 +43,8 @@ def generate_launch_description():
         spawn_entity,
         ExecuteProcess(
             cmd=['gazebo', '--verbose','worlds/empty.world', '-s', 'libgazebo_ros_factory.so'],
+            output='screen'),
+        ExecuteProcess(
+            cmd=['rviz2', '-d', rviz_config_path],
             output='screen'),
     ])
